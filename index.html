@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="pt-br" data-bs-theme="auto">
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="x-icon" href="clave-de-sol.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Lista de Instrumentos</title>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-villa-agency.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    function addInstrument(listNumber) {
+        const instrumentInput = document.getElementById(`instrument-input${listNumber}`);
+        const instrumentList = document.getElementById(`instrument-list${listNumber}`);
+
+        const instrumentName = instrumentInput.value.trim();
+        if (instrumentName !== '') {
+            const listItem = document.createElement('li');
+            listItem.textContent = instrumentName;
+            listItem.classList.add('list-item');
+
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remover';
+            removeButton.classList.add('remove-btn');
+            removeButton.onclick = function() {
+                instrumentList.removeChild(listItem);
+            };
+
+            listItem.appendChild(removeButton);
+            instrumentList.appendChild(listItem);
+            instrumentInput.value = '';
+        } else {
+            alert('Por favor, digite o nome de um instrumento.');
+        }
+    }
+
+    window.addInstrument = addInstrument;
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    let currentTheme = localStorage.getItem('theme') || 'light';
+
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        themeToggleBtn.innerHTML = theme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        const navbar = document.querySelector('header');
+        const containers = document.querySelectorAll('.list-container');
+
+        if (theme === 'dark') {
+            navbar.style.backgroundColor = 'var(--navbar-bg)';
+            containers.forEach(container => {
+                container.style.backgroundColor = 'var(--container-bg)';
+                container.style.borderColor = 'var(--container-border)';
+            });
+        } else {
+            navbar.style.backgroundColor = 'var(--header-bg)';
+            containers.forEach(container => {
+                container.style.backgroundColor = 'var(--container-bg)';
+                container.style.borderColor = 'var(--container-border)';
+            });
+        }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        if (currentTheme === 'light') {
+            applyTheme('dark');
+            currentTheme = 'dark';
+        } else {
+            applyTheme('light');
+            currentTheme = 'light';
+        }
+    });
+
+    applyTheme(currentTheme);
+});
+  </script>
+    <style>
+
+        .lists-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .list-container {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 30%; 
+            min-width: 300px;
+        }
+
+        .list-container h2 {
+            color: #F35525;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .list-container input[type="text"] {
+            width: calc(100% - 90px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+
+        .remove-btn {
+            background-color: #f44336;
+        }
+
+        .remove-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        li button {
+            margin-left: auto;
+        }
+
+        .centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        @media screen and (max-width: 768px) {
+            .lists-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .list-container {
+                width: 80%;
+            }
+        }
+      h2 {
+          color: #F35525;
+          text-align: center;
+      }
+      input[type="text"] {
+          width: calc(100% - 100px);
+          padding: 10px;
+          margin-bottom: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+      }
+      .list-btn {
+          background-color: #F35525;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          cursor: pointer;
+          border-radius: 4px;
+          transition: background-color 0.3s ease;
+      }
+      .list-btn:hover {
+          background-color: #d63e1a;
+      }
+      ul {
+          list-style-type: none;
+          padding: 0;
+      }
+      li {
+          padding: 10px;
+          margin: 10px 0;
+          background-color: #f0f0f0;
+          justify-content: space-between;
+          align-items: center;
+      }
+      .remove-btn {
+          background-color: #F35525;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          cursor: pointer;
+          border-radius: 4px;
+          transition: background-color 0.3s ease;
+      }
+      .remove-btn:hover {
+          background-color: #ff7f62;
+      }
+      .author-info {
+          background-color: #fa815c;
+          padding: 20px;
+          border-radius: 8px;
+          margin-bottom: 0;
+          width: 100%;
+      }
+      .author-info h2 {
+          margin-bottom: 20px;
+      }
+      .author-info p {
+          margin-bottom: 10px;
+      }
+      footer {
+          padding: 10px 20px;
+          width: 100%;
+          text-align: center;
+      }
+      .nav {
+          padding-top: 0;
+      }
+      .nav li {
+          border: none;
+          background: none;
+      }
+      .nav li a {
+          padding: 0;
+          margin: 0;
+      }
+      .sub-header {
+        padding-top: 20px;
+          padding-top: 0;
+      }
+      .sub-header li {
+          border: none;
+          background: none;
+      }
+      .sub-header li a {
+          padding: 0;
+          margin: 0;
+      }
+      :root {
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --accent-color: #F35525;
+    --navbar-bg: #ffffff;
+    --header-bg: #ffffff; 
+    --container-bg: #ffffff; 
+    --container-border: #ccc; 
+    --subheader-bg: #f0f0f0; 
+    --subheader-text-color: #333333;
+    --about-bg: #ffffff;
+    --about-border: #ccc;
+    --input-bg: #ffffff; 
+    --input-border: #ccc; 
+}
+
+[data-theme="dark"] {
+    --background-color: #333333;
+    --text-color: #ffffff;
+    --accent-color: #F35525;
+    --header-bg: #222222;
+    --navbar-bg: #444444;
+    --container-bg: #666666;
+    --container-border: #888888;
+    --subheader-bg: #444444;
+    --subheader-text-color: #ffffff;
+    --about-bg: #555555;
+    --about-border: #777777;
+    --input-bg: #444444;
+    --input-border: #666666;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.sub-header {
+    background-color: var(--subheader-bg);
+    color: var(--subheader-text-color);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 0;
+}
+.properties .item {
+    background-color: var(--about-bg);
+    border: 1px solid var(--about-border);
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+
+input[type="text"] {
+    width: calc(100% - 100px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+.list-item {
+    background-color: var(--list-bg);
+    border: 1px solid var(--list-border);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.list-item button {
+    margin-left: 10px;
+}
+#theme-toggle-btn {
+  padding: 10px;
+  margin-bottom: 12px;
+    border: none;
+    margin-left: 15px;
+    background: none;
+    cursor: pointer;
+    padding: 0; 
+}
+.item li {
+    padding: 10px;
+    border-radius: 8px; 
+    transition: background-color 0.3s ease;
+}
+
+[data-theme="dark"] .item li {
+    background-color: #444444;
+
+}
+.item ul li {
+    color: #333333;
+    transition: color 0.3s ease; 
+}
+
+[data-theme="dark"] .item ul li {
+    color: #ffffff; 
+}
+.author-info {
+            background-color: #ff7045;
+            padding: 20px;
+            border-radius: 18px;
+            margin-bottom: 0;
+            width: 70%;
+            color: white;
+}
+.list-item {
+            cursor: pointer;
+            border: 1px solid transparent;
+            padding: 8px;
+            border-radius: 4px;
+            margin: 4px 0;
+            transition: background-color 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .list-item.active .list-item-description,
+        .list-item.active .list-item-image {
+            display: block;
+        }
+
+        .list-item-description {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .list-item-image {
+            display: none;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+.list-item-content {
+    display: flex;
+    align-items: center;
+}
+
+.list-item-icon {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.list-item-name {
+    flex: 1;
+    font-weight: bold;
+}
+
+.list-item-description {
+    display: none;
+    padding-top: 5px;
+    color: var(--text-color);
+}
+
+.list-item.active .list-item-description {
+    display: block;
+}
+
+.list-item.active .list-item-icon {
+    transform: rotate(180deg);
+}
+
+.remove-btn {
+    background-color: #F35525;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+
+.remove-btn:hover {
+    background-color: #ff7f62;
+}
+  </style>
+</head>
+
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <ul class="info">
+            <li><i class="fa fa-map"></i> Av. Engenheiro Tasso Pinheiro, 700</li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <ul class="social-links">
+            <li><a href="https://www.facebook.com/etecvav/?locale=pt_BR"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="https://www.youtube.com/c/EtecvavJundiai" target="_blank"><i class="fab fa-youtube"></i></a></li>
+            <li><a href="https://www.instagram.com/etecvav_oficial/"><i class="fab fa-instagram"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <a href="index.html" class="logo">
+                        <h1>Instrumentos</h1>
+                    </a>
+                    <ul class="nav">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="#Lista">Lista</a></li>
+                        <li><a href="#Sobre">Sobre</a></li>
+                        <li><a href="https://www.madeinbrazil.com.br/"><i class="fa fa-calendar"></i> Comprar</a></li>
+                    </ul>
+                    <button id="theme-toggle-btn">
+                      <i id="theme-icon" class="fas fa-moon"></i>
+                  </button>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+  <img src="aa.png" height="11" width="1600">
+  <div class="main-banner">
+    <div class="owl-carousel owl-banner">
+      <div class="item item-1">
+        <div class="header-text">
+          <span class="category"><em>Guitarra</em></span>
+          <h2>Crie sua<br>Lista de Instrumentos</h2>
+        </div>
+      </div>
+      <div class="item item-2">
+        <div class="header-text">
+          <span class="category"><em>Trompete</em></span>
+          <h2>Liste seus<br>gostos</h2>
+        </div>
+      </div>
+      <div class="item item-3">
+        <div class="header-text">
+          <span class="category"><em>Violino</em></span>
+          <h2>Organize seus<br>Instrumentos musicais</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img src="aa.png" height="11" width="1600">
+  <center><section class="page-section portfolio" id="Lista"></section>
+    <div class="featured section">
+        <div class="container">
+        </div>
+    </div>
+    <h1><font color="#F35525">Instrumentos</font></h1><br><br><br>
+    <div class="lists-container">
+      <div class="list-container">
+          <h2>Corda</h2><br>
+          <input type="text" id="instrument-name-input1" placeholder="Nome do instrumento">
+          <input type="text" id="instrument-desc-input1" placeholder="Descrição do instrumento">
+          <input type="file" id="instrument-image-input1" accept="image/*"><br><br>
+          <button class="list-btn" onclick="addInstrument(1)">Adicionar</button>
+          <ul id="instrument-list1"></ul>
+      </div>
+      <div class="list-container">
+          <h2>Sopro</h2><br>
+          <input type="text" id="instrument-name-input2" placeholder="Nome do instrumento">
+          <input type="text" id="instrument-desc-input2" placeholder="Descrição do instrumento">
+          <input type="file" id="instrument-image-input2" accept="image/*"><br><br>
+          <button class="list-btn" onclick="addInstrument(2)">Adicionar</button>
+          <ul id="instrument-list2"></ul>
+      </div>
+      <div class="list-container">
+          <h2>Percussão</h2><br>
+          <input type="text" id="instrument-name-input3" placeholder="Nome do instrumento">
+          <input type="text" id="instrument-desc-input3" placeholder="Descrição do instrumento">
+          <input type="file" id="instrument-image-input3" accept="image/*"><br><br>
+          <button class="list-btn" onclick="addInstrument(3)">Adicionar</button>
+          <ul id="instrument-list3"></ul>
+      </div>
+  </div><br><br><br>
+</center>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        function addInstrument(listNumber) {
+            const nameInput = document.getElementById(`instrument-name-input${listNumber}`);
+            const descInput = document.getElementById(`instrument-desc-input${listNumber}`);
+            const imageInput = document.getElementById(`instrument-image-input${listNumber}`);
+            const instrumentList = document.getElementById(`instrument-list${listNumber}`);
+
+            const instrumentName = nameInput.value.trim();
+            const instrumentDesc = descInput.value.trim();
+            const instrumentImage = imageInput.files[0];
+
+            if (instrumentName !== '' && instrumentDesc !== '' && instrumentImage) {
+                const listItem = document.createElement('li');
+                listItem.classList.add('list-item');
+
+                const itemContent = document.createElement('div');
+                itemContent.classList.add('list-item-content');
+
+                const iconSpan = document.createElement('span');
+                iconSpan.classList.add('list-item-icon');
+                iconSpan.innerHTML = '<i class="fas fa-chevron-down"></i>';
+
+                const nameSpan = document.createElement('span');
+                nameSpan.textContent = instrumentName;
+                nameSpan.classList.add('list-item-name');
+
+                const descSpan = document.createElement('span');
+                descSpan.textContent = instrumentDesc;
+                descSpan.classList.add('list-item-description');
+
+                const imgElem = document.createElement('img');
+                imgElem.classList.add('list-item-image');
+                imgElem.src = URL.createObjectURL(instrumentImage);
+                imgElem.onload = () => URL.revokeObjectURL(imgElem.src);
+
+                itemContent.appendChild(iconSpan);
+                itemContent.appendChild(nameSpan);
+                listItem.appendChild(itemContent);
+                listItem.appendChild(descSpan);
+                listItem.appendChild(imgElem);
+
+                listItem.onclick = function() {
+                    listItem.classList.toggle('active');
+                };
+
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remover';
+                removeButton.classList.add('remove-btn');
+                removeButton.onclick = function(event) {
+                    event.stopPropagation();
+                    instrumentList.removeChild(listItem);
+                };
+
+                listItem.appendChild(removeButton);
+                instrumentList.appendChild(listItem);
+
+                nameInput.value = '';
+                descInput.value = '';
+                imageInput.value = '';
+            } else {
+                alert('Por favor, preencha o nome, a descrição e selecione uma imagem do instrumento.');
+            }
+        }
+
+        window.addInstrument = addInstrument;
+    });
+      </script>
+      </center>
+<br><br><br><br><br><br><br>
+
+  <div class="video section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-heading text-center">
+            <h6>Video</h6>
+            <h2>Os timbres e as classes dos instrumentos</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img src="aa.png" height="11" width="1600">
+  <div class="video-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+          <div class="video-frame">
+            <img src="assets/images/video-frame.jpg" alt="">
+            <a href="https://www.youtube.com/watch?v=XLX8ttNkr3E" target="_blank"><i class="fa fa-play"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="properties section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-heading text-center">
+            <img src="aa.png" height="11" width="1600">
+            <br><br<img src="aa.png" height="11" width="1600">><br><br><img src="aa.png" height="11" width="1600"><br><br><h6>| Informações</h6>
+            <h2>Um pouco mais sobre</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="item">
+            <a href="https://www.encorda.com.br/blog/instrumentos-da-familia-das-cordas/"><img src="cc.jpg" alt=""></a>
+            <h4><a href="https://www.encorda.com.br/blog/instrumentos-da-familia-das-cordas/">Mais sobre instrumentos de corda</a></h4>
+            <ul>
+              <li>Como funcionam</li>
+                        <li>Como produzem som</li>
+                        <li>Principais instrumentos de corda</li>
+            </ul>
+            <div class="main-button">
+              <a href="https://www.encorda.com.br/blog/instrumentos-da-familia-das-cordas/">Saiba mais</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="item">
+            <a href="https://blog.teclacenter.com.br/instrumentos-de-sopro-conheca-os-10-tipos/"><img src="bb.jpg" alt=""></a>
+            <h4><a href="https://blog.teclacenter.com.br/instrumentos-de-sopro-conheca-os-10-tipos/">Mais sobre instrumentos de sopro</a></h4>
+            <ul>
+              <li>Como funcionam</li>
+              <li>Como produzem som</li>
+              <li>Principais instrumentos de sopro</li>
+                    </ul>
+                    <div class="main-button">
+                        <a href="https://blog.teclacenter.com.br/instrumentos-de-sopro-conheca-os-10-tipos/">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="item">
+                    <a href="https://batuqueiros.clubedapercussao.com.br/2022/04/27/os-principais-instrumentos-de-percussao/"><img src="perc.png" alt=""></a>
+                    <h4><a href="https://batuqueiros.clubedapercussao.com.br/2022/04/27/os-principais-instrumentos-de-percussao/">Mais sobre instrumentos de Percussão</a></h4>
+                    <ul>
+                        <li>Como funcionam</li>
+                        <li>Como produzem som</li>
+                        <li>Principais instrumentos de Percussão</li>
+                    </ul>
+                    <div class="main-button">
+                        <a href="https://batuqueiros.clubedapercussao.com.br/2022/04/27/os-principais-instrumentos-de-percussao/">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><center>
+    <section class="page-section portfolio" id="Sobre"></section>
+    <font color="white">
+    <div class="author-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>----- Sobre -----</h3><br><font size="6">
+                    <p>Página criada por <strong>Matheus Victor e Sofia Pintor</strong>, alunos cursando o segundo ano de Informática para internet no cólegio técnico ETEC Vasco Antonio Venchiarutti.</p>
+                    <p>Esse site teve como motivo de criação, facilitar a escolha e organização de instrumentos musicais de diferentes classes de tipos através de listas, de modo a fornecer uma interação simples e intuítiva para o usuário.</p>
+                </div></font>
+            </div>
+        </div>
+    </div></font></center>
+    <footer>
+        <div class="container">
+            <p>Copyright © - Matheus V. e Sofia Pintor - 2024</p>
+        </div>
+    </footer>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/counter.js"></script>
+    <script src="assets/js/custom.js"></script>
+</body>
+</html>
